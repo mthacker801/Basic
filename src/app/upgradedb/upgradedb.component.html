@@ -1,0 +1,61 @@
+  <div class="grid">
+    <div class="connect">
+      <app-connectdb #connect [dbList]="selectedDb"></app-connectdb>
+    </div>
+    <br>
+    <br>
+  
+    <div class="upgrade" direction=row>
+      <div class="selections">
+      <div class="dx-fieldset-header"><b>Upgrade Database</b></div>
+      <div class="dx-field">          
+          <dx-select-box
+            [dataSource]="connect.dbList"
+            displayExpr="name" 
+            valueExpr="name" 
+            [(ngModel)]="_dbConnData.name"
+            [searchEnabled]="true"
+            placeholder="Database"
+            (onValueChanged)="valueChanged($event)">
+          </dx-select-box>
+          <!--(onValueChanged)="dbName.emit({name:_dbConnData.name})"> -->
+      </div>
+    <a>
+      Current Version: <span *ngIf="selectedDb">{{selectedDb.name}}</span>
+      <br>
+      
+      <br>
+    </a>
+<br>
+<br>
+<div class="dx-fieldset-header">Select New Version</div>
+<div class="dx-field">
+    <dx-select-box 
+      [dataSource]="newVersion" 
+      displayExpr="ver" 
+      valueExpr="ver" 
+      [(ngModel)]="_dbConnData.ver"
+      [searchEnabled]="true"
+      placeholder="Version">
+    </dx-select-box>
+</div>
+<p>{{dbName}}</p>
+</div>
+  
+    <br>
+      <br>
+      <dx-button text='Upgrade to Desktop' type='default'></dx-button>
+
+    <br>
+    <br>
+
+    <dx-button text='Run Analysis' type='default'></dx-button>
+
+    <br>
+    <br>
+
+    <dx-button text='Generate Data Review' type='default'></dx-button>
+
+  </div>
+  </div>
+

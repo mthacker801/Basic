@@ -1,0 +1,15 @@
+<div style="text-align:center">
+  <h1>
+    {{ title }}
+  </h1>
+  </div>
+  <mat-toolbar class="wrapper" style="text-align: center">
+    <button class="choose" mat-raised-button color="primary" [routerLink]="['/upgradedb']">Upgrade</button>
+    <button class="choose" mat-raised-button color="primary" [routerLink]="['/newdb']">New Database</button>
+    <button class="choose" mat-raised-button color="primary" [routerLink]="['/existingdb']">Existing Database</button>
+</mat-toolbar>
+<br>
+<div class='container'>
+  <router-outlet></router-outlet>
+</div>
+

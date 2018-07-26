@@ -1,0 +1,66 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-template-rows: 30% 15% 55% ;
+    grid-gap: 10px 15px;
+  }
+  
+  .connect {
+    grid-column: 1;
+    grid-row: 1;
+    border: 1px solid;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    background-color: #fff;
+  }
+  
+  .pro {
+    grid-column: 1;
+    grid-row: 2;
+    border: 1px solid;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    background-color: #fff;
+  }
+  
+  .upgrade {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    border: 1px solid;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    background-color: #fff;
+  }
+  
+  .selections {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .analyze {
+    grid-column: 1 / span 3;
+    grid-row: 3;
+    border: 1px solid;
+    display: inline-block;
+    background-color: #fff;
+  }
+  
+  .choose:hover {
+    background-color: #0065a1;
+  }
+  
+  .choose:focus {
+    background-color: #403c33
+  }
+  
+  .currentVersion {
+      border: 1px solid purple ;
+    }
