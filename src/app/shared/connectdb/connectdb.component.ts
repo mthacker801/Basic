@@ -9,7 +9,7 @@ import { DblistService } from '../../dblist.service';
   templateUrl: './connectdb.component.html',
   styleUrls: ['./connectdb.component.css']
 })
-// tslint:disable-next-line:component-class-suffix
+
 export class ConnectdbComponent implements OnInit {
   _dbConnData = {};
   dbNames = [];
@@ -27,4 +27,7 @@ export class ConnectdbComponent implements OnInit {
         this.dbList = <IDatabase[]>sub;
     });
   }
+
+
+
 }

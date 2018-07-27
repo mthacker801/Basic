@@ -34,6 +34,12 @@ export class UpgradedbComponent implements OnInit {
   // Inject
 constructor(private _dblistService: DblistService) {}
 
+sendInfo(name: string) {
+const upgradeInput = {
+    name: name
+  };
+  this._dblistService.addDbName(upgradeInput);
+}
     valueChanged(data) {
       this.selectedDb = data.value;
     }

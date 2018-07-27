@@ -74,8 +74,6 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     DxFileUploaderModule,
-    // FileSaver,
-    // XLSX
   ],
   exports: [],
   providers: [
@@ -84,5 +82,3 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// platformBrowserDynamic().bootstrapModule(AppModule);
