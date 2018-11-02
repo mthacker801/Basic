@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   DblistService: any;
   title = 'Conversion Toolkit';
   _dbConnData = {};
+  choice = 'upgradedb';
 
   constructor(private dblistService: DblistService) {}
 

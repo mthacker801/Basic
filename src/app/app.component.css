@@ -14,8 +14,8 @@
   .choose:hover {
       background-color: #0065a1;
     }
-  
-  .choose:focus {
+
+  .choose.active {
     background-color: #403c33
   }
   

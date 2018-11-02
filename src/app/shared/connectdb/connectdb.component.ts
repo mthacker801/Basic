@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { IDatabase } from '../../database';
+import { Component, OnInit, Input } from '@angular/core';
 import { DblistService } from '../../dblist.service';
+import { IDatabase } from '../../database';
 
 
 @Component({
@@ -9,25 +9,26 @@ import { DblistService } from '../../dblist.service';
   templateUrl: './connectdb.component.html',
   styleUrls: ['./connectdb.component.css']
 })
-
+// tslint:disable-next-line:component-class-suffix
 export class ConnectdbComponent implements OnInit {
   _dbConnData = {};
-  dbNames = [];
   @Input()
-  dbList: IDatabase[];
+  dbConn: IDatabase;
 
-  constructor(private _dblistService: DblistService) {}
+
+  public constructor(private _dblistService: DblistService) {}
 
   ngOnInit() {
   }
 
-  showDbList() {
+  sendConn() {
     this._dblistService.getDbList(this._dbConnData)
     .subscribe(sub => {
-        this.dbList = <IDatabase[]>sub;
+        this.dbConn = <IDatabase>sub;
     });
   }
 
-
-
+  // showDbList(dbConn: IDatabase[]) {
+  //   this._dblistService.currentConn = dbConn;
+  // }
 }

@@ -1,47 +1,57 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { IDatabase } from './database';
+import { Database } from './database';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Subject} from 'rxjs/Subject';
+import { tap } from 'rxjs/operators';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from '../environments/environment';
 
 
-
 @Injectable()
 export class DblistService {
 
-    endpoint = environment.path;
-    dbList: IDatabase[];
-    _dbConnData = {};
-    private _versionList = './data.ts';
-
-    // Observable Object/Array Source
-    dbData: Subject<Array<IDatabase>> = new BehaviorSubject<Array<IDatabase>>([]);
-
     constructor(private _http: HttpClient) { }
 
-    getDbList(dbConn): Observable < IDatabase[] > {
-        return this._http.post<IDatabase[]>(this.endpoint + '/dbs', dbConn);
+    endpoint = environment.path;
+    myDatabase: Database = new Database('mpd-mthacker\mssqlserver_2014', 'sa', 'ManagerPlus1', 'd', '1');
+    private Connect$ = new BehaviorSubject<Database>(this.myDatabase);
+    connectionString: any;
+    public currentConn = this.Connect$.asObservable();
+
+    setConn(dbName: string) {
+        this.myDatabase.value = dbName;
+        this.Connect$.next(this.myDatabase);
+        console.log(this.Connect$);
     }
 
-    addDbName(dbConn) {
-        this._dbConnData.name)
-      }
+    getDbList(dbConn): Observable<Database> {
 
-      toLocalStorage(dbConn) {
-          localStorage.setConnection('dbConn', JSON.stringify(dbConn));
-      }
-
-      fromLocalStorage() {
-          const returnConnection = localStorage.getConnection('dbConn');
-      }
-
-    getDbVersion(dbConn): Observable <IDatabase[]> {
-        return this._http.post<IDatabase[]>(this.endpoint + '/dbs', dbConn);
+        this.connectionString = dbConn;
+        const url = `${this.endpoint + '/dbs'}`;
+        this.myDatabase.server = dbConn.server;
+        this.myDatabase.user = dbConn.user;
+        this.myDatabase.password = dbConn.password;
+        this.Connect$.next(this.myDatabase);
+        console.log(this.Connect$);
+        return this._http.post<Database>(url, dbConn);
     }
+
+
+
+
+
+    // updateConn(): Observable<IDatabase[]> {
+       // return this._http.get<IDatabase[]>(this.);
+    // }
+
+
+    getAnalysis(dbConn) {
+        return this._http.post<any>(this.endpoint + '/proUpgrade/getAnalysis', dbConn);
+      }
+
 }
 

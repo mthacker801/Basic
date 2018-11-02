@@ -1,13 +1,9 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DblistService } from '../dblist.service';
-import { IDatabase } from '../database';
-import { Subscription } from 'rxjs/Subscription';
+
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/observable/merge';
-
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -16,34 +12,34 @@ import 'rxjs/add/observable/merge';
 })
 
 export class UpgradedbComponent implements OnInit {
-  versionList;
-
-  @Input()
-    dbList: IDatabase[];
-    subscription: Subscription;
 // create variables to be used in component and HTML
-  errorMessage: string;
-  DBDeskControl = new FormControl();
-  databaseForm: FormGroup;
   _dbConnData = {};
 
    @Output()
     dbName = new EventEmitter();
-    selectedDb: any;
+    name: string;
 
   // Inject
 constructor(private _dblistService: DblistService) {}
 
-sendInfo(name: string) {
-const upgradeInput = {
-    name: name
-  };
-  this._dblistService.addDbName(upgradeInput);
-}
-    valueChanged(data) {
-      this.selectedDb = data.value;
-    }
+  ngOnInit() {
+  this._dblistService.currentConn
+    .subscribe(_dbConnData => this._dbConnData = _dbConnData);
+    // console.log(this._dbConnData);
+  }
 
-ngOnInit() {}
+    sendDbName(name) {
+      this._dblistService.setConn(name.value);
+      // console.log('received:', name);
+    }
+    // sendInfo(name: string) {
+    //   const upgradeInput = {
+    //       name: name
+    //     };
+    //     this._dblistService.addDbName(upgradeInput);
+    //   }
+          // valueChanged(data) {
+          //   this.selectedDb = data.value;
+          // }
 }
 

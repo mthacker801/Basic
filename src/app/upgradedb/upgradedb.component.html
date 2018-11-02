@@ -1,6 +1,6 @@
   <div class="grid">
     <div class="connect">
-      <app-connectdb #connect [dbList]="selectedDb"></app-connectdb>
+      <app-connectdb #connect></app-connectdb>
     </div>
     <br>
     <br>
@@ -10,14 +10,15 @@
       <div class="dx-fieldset-header"><b>Upgrade Database</b></div>
       <div class="dx-field">          
           <dx-select-box
-            [dataSource]="connect.dbList"
+            [dataSource]="connect.dbConn"
             displayExpr="name" 
             valueExpr="name" 
             [(ngModel)]="_dbConnData.name"
             [searchEnabled]="true"
             placeholder="Database"
-            (onValueChanged)="valueChanged($event)">
+            (onValueChanged)="sendDbName($event)">
           </dx-select-box>
+          <!--(onValueChanged)="valueChanged($event)"-->
           <!--(onValueChanged)="dbName.emit({name:_dbConnData.name})"> -->
       </div>
     <a>
@@ -39,7 +40,6 @@
       placeholder="Version">
     </dx-select-box>
 </div>
-<p>{{dbName}}</p>
 </div>
   
     <br>
@@ -57,5 +57,5 @@
     <dx-button text='Generate Data Review' type='default'></dx-button>
 
   </div>
-  </div>
+</div>
 
