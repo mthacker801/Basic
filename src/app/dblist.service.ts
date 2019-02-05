@@ -23,11 +23,11 @@ export class DblistService {
     public currentConn = this.Connect$.asObservable();
 
     setConn(dbName: string) {
-        const url = `${this.endpoint + '/version'}`;
+        const url2 = `${this.endpoint + '/dbs'}`;
         this.myDatabase.database = dbName;
         this.Connect$.next(this.myDatabase);
         console.log(this.Connect$);
-        return this._http.post<Database>(url, dbName);
+        return this._http.post<Database>(url2, dbName);
     }
 
     getDbList(dbConn): Observable<Database> {
