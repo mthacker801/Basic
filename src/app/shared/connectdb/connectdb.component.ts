@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DblistService } from '../../dblist.service';
-import { IDatabase } from '../../database';
+import { Database } from '../../database';
 
 
 @Component({
@@ -13,8 +13,7 @@ import { IDatabase } from '../../database';
 export class ConnectdbComponent implements OnInit {
   _dbConnData = {};
   @Input()
-  dbConn: IDatabase;
-
+  dbConn: Database;
 
   public constructor(private _dblistService: DblistService) {}
 
@@ -24,11 +23,8 @@ export class ConnectdbComponent implements OnInit {
   sendConn() {
     this._dblistService.getDbList(this._dbConnData)
     .subscribe(sub => {
-        this.dbConn = <IDatabase>sub;
+        this.dbConn = <Database>sub;
     });
   }
 
-  // showDbList(dbConn: IDatabase[]) {
-  //   this._dblistService.currentConn = dbConn;
-  // }
 }

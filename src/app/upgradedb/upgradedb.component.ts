@@ -17,7 +17,7 @@ export class UpgradedbComponent implements OnInit {
 
    @Output()
     dbName = new EventEmitter();
-    name: string;
+    database: string;
 
   // Inject
 constructor(private _dblistService: DblistService) {}
@@ -28,18 +28,14 @@ constructor(private _dblistService: DblistService) {}
     // console.log(this._dbConnData);
   }
 
-    sendDbName(name) {
-      this._dblistService.setConn(name.value);
+    sendDbName(database) {
+      this._dblistService.setConn(database.value);
       // console.log('received:', name);
     }
-    // sendInfo(name: string) {
-    //   const upgradeInput = {
-    //       name: name
-    //     };
-    //     this._dblistService.addDbName(upgradeInput);
-    //   }
-          // valueChanged(data) {
-          //   this.selectedDb = data.value;
-          // }
+
+    getDbVersion() {
+
+    }
+
 }
 

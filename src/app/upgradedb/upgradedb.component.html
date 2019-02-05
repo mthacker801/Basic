@@ -13,13 +13,11 @@
             [dataSource]="connect.dbConn"
             displayExpr="name" 
             valueExpr="name" 
-            [(ngModel)]="_dbConnData.name"
+            [(ngModel)]="_dbConnData.database"
             [searchEnabled]="true"
             placeholder="Database"
             (onValueChanged)="sendDbName($event)">
           </dx-select-box>
-          <!--(onValueChanged)="valueChanged($event)"-->
-          <!--(onValueChanged)="dbName.emit({name:_dbConnData.name})"> -->
       </div>
     <a>
       Current Version: <span *ngIf="selectedDb">{{selectedDb.name}}</span>
